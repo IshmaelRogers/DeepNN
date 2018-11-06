@@ -147,37 +147,37 @@ See Save and Restore folder in this repository for code designed to save and loa
 
 # Finetuning
 
-See Loading 
+See "Load weights and biases into a new model" folder for "finetuning.py" code file
 
 # Regularization 
 
-The network at just the right size for our data is hard to optimize. 
-
-In practice we train networks that are way too big for our data then prevent them from overfitting
+A network that is just right size for our data is hard to optimize. 
+NOTE: In practice we train networks that are way too big for our data, then prevent them from overfitting
 
 # Early termination 
 
-Look at performance of validation set. 
+This techniques is used to prevent over optimization during training. 
 
-Stop and train as soon as we stop inmproving 
-
-Prevents over optimization
+0. Look at performance of validation set.
+1. Stop and train as soon as it stops improving 
 
 ## Regularizing 
 
-- applying artificial constraints on the network that implicitly reduce the number of free parameters.
+Is the act of applying some artificial constraints on the network that implicitly reduce the number of free parameters.
 
 # L2 Regularization
 
-Adds another term to the loss which penalizes large weights.
+This tool adds another term to the loss which penalizes large weights.
 
-Add L2 Norm of the weights to the loss and multiply by a small constant
+In general 
+
+0. Add L2 Norm of the weights to the loss
+1. Multiply by a small constant
 
 NOTE: L2 norm stands for the sum of the squares of the individual elements in a vector 
  
- Structure of network doesnt change because the L2 Norm is being added
- 
- Derivative is X
+The overall structure of network remains unaffected because the L2 Norm is being added to the loss
+NOTE: It's derivative is linear function
  
 
 Question
@@ -185,41 +185,34 @@ Question
 
 # Dropout 
 
-Dropout is a regularization technique for reducing overfitting. The technique temporarily drops units (artificial neurons) from the network, along with all of those units' incoming and outgoing connections
+Dropout is a regularization technique for reducing overfitting. The technique temporarily drops units (artificial neurons) from the network, along with all of those units' incoming and outgoing connections.
 
-imagine 1 layer connected to another layer the values that go from 1 layer to the next are activations. Take the activations and randomly, for every example you train the network on, set half of them to zero. 
+Imagine one layer connected to another layer:
+NOTE: The values that go from one layer to the next are activations. 
 
-Completely and randomly and take half the data and destroy it 
+0. Take the activations and randomly, for every example you train the network on, set half of them to zero. 
+1. Completely randomly take half the data and destroy it 
+NOTE: In doing so, the network can never rely on any given activation to be present because it may be destroyed.
 
-Network can never rely on any given activation to be present because it may be destroyed
+Now the network is forced to learn a redundant representation for everything
+NOTE: This ensures that some of the info remains
 
-Forced to learn a redundant representation for everything, to make sure some of the info remains
+NOTE: At this point we no longer want randomness, therefore something more determonistic is desired. 
 
-Prevents overfitting
+0. Taking a concensuses over the average of the activation 
+1. Evaluate the network trained with dropout 
 
-Takes a concensus 
+NOTE: ye = average of all yt obtained during training 
 
-Evaluating the network trained with dropout no longer want randomness
+During Training
 
-something determoinistic is desired 
-
-Take concensuses over the 
-
-average the activation 
-
-y e = average of all yt obtained during training 
-
-during =training
-
-0 out activation that i drop out 
-scale remaining activations by factor of 2 
+0. Zero out activations that were dropped out
+1. Scale remaining activations by factor of 2 
 
 to remove these dropouts and scaling operations from the nueral network
+NOTE: The result is an average of these activations that is properly scaled
 
-The result is an average of these activations that is properly scaled
-
-
-TensorFlow provides the 
+TensorFlow provides a dropout function: 
 tf.nn.dropout(
     x,
     keep_prob,
@@ -227,16 +220,11 @@ tf.nn.dropout(
     seed=None,
     name=None
 )
-
-function to implement the dropout
-
 See droput.py
 
-Result of code is 
+Result of code as seen in the repository is 
 
 [[ 9.559999, 16.], [ 0. , 0.], [ 4.72, 28.32])
-
-
 
 
 # Deep Neural Network Lab
