@@ -147,6 +147,8 @@ See Save and Restore folder in this repository for code designed to save and loa
 
 # Finetuning
 
+See Loading 
+
 # Regularization 
 
 The network at just the right size for our data is hard to optimize. 
