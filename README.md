@@ -5,132 +5,145 @@
 # www.idrg.io
 # 2018
 
-Take the classifier and turn it into a deep network
+In the Deep Learning repository we developed a simple classifier to perform classification tasks. In this repository we will go a step further and turn the single classifier into a Deep Neural Network. 
 
-Let's focus on how the optimizer computes the graidents for arbitrary functions. Introduce the concept of regulaization which helps train larger models.
+This README document focuses on how the optimizer computes the graidents for arbitrary functions and introduces the concept of regularization which helps train larger models.
 
+## Review questions
 
-Review questions
+Consider the simple classifier from the deep learning repository
 
-consider our simple model from the deep learning repository, it takes in a 28 x 28 image the output was 10 classes
-
-How many trained parameters did the model have?
+if the classifier takes in a 28 x 28 image and the output is 10 classes, 
+then, how many trained parameters did the model have?
 
 The image was 28 x 28, therefore matrix W takes in 28 x 28 pixels (rows)
 
 If the output is 10 classes, that means that b has to be a 10 x 1
 
-28 x 28 x 10 + 10 = 7850
-
-
- NOTE: In general if you have N, inputs and K, outputs, then the number of parameters equal
+28 x 28 x 10 + 10 = 7850 trained parameters!
+NOTE: In general if you have N, inputs and K, outputs, then the number of parameters equals:
  
  (N + 1) x K
 
 # Limitations of linear models
 
-interaction are limited
-Cannot handle products inputs
+The interactions that are possible with linear models are limited. More specifically, they tend to handle inputs that need to be added together but cannot handle products of inputs.
 
-Linear models are efficient and stable 
-small cahnges in input can never yield big changes in output
+There are some positive aspects of linear models that force us to use them despite their limitations.
 
-derivative of linear function is constant 
+0. Mathematically inear models are efficient and stable therefore, small cahnges in input can never yield big changes in output.
+1. The derivative of linear function is constant 
 
-Ideally we want to keep parameters inside big linear functions while also making the model non-linear.
+NOTE: Ideally we want to keep parameters inside big linear functions while also making the model non-linear.
 
-## Introduce linearities
+## Introduce non-linearities
 
-RELU simpliest non-linear function with a nice derivative that happens to be a step function. 
+The ReLU is the simpliest non-linear function (with a nice derivative that happens to be a step function.) 
 
-linear if x > 0  and a zero everywhere else
-
+The ReLU is linear if x > 0  and a zero everywhere else
 
 # Network of ReLUs
 
-Take a logistic classifier and do the minimal aount of change to make it nonliner
+Constructing a network of ReLUs can be extremely useful.
 
-instead of single matrix multiply as the classifier, we insert a RELU in the middle to get a
+0. Take a logistic classifier and make the minimal amount of changes to make it non-linear
+
+NOTE: instead of a single matrix multiply as the classifier, we insert a RELU in the middle to get a
 
 # Two layer Neural Networks
 
-The hidden layer to a network allows it to model more complex functions. Using a non linear activation function on the hudden layer lets it model non-linear functions. 
+The hidden layer in a network allows it to model more complex functions. 
+NOTE: Using a non linear activation function on the hidden layer lets it model non-linear functions very well. 
+NOTE: Functions can become non-linear when the inputs are multiplied together as briefly discussed previously.
 
-1. from inputs to RElU
+0. Inputs to ReLU
 
-The first layer  consists of the set of weights and biases applied to X and passed through ReLUs. The output of this layer is fed to the next one, but is not observable outside the network, hence it is known as a hidden layer.
+The first layer consists of the set of weights and biases applied to X and is passed through ReLUs. The output of this layer is fed to the next one, but is not observable outside the network, hence it is known as a hidden layer.
 
-2. From Relu to classifier 
+1. From Relu to classifier 
 
 The second layer consists of the weights and biases applied to these intermediate outputs, followed by the softmax function to generate probabilities
-
-Parameter H, the number of RELU units in the classifier ***
-
-Can be as big as we want. 
+NOTE: The parameter H is the number of RELU units in the classifier
+NOTE: H Can be as big as we want. 
 
 ## TensorFlow ReLU
 
-We use the TensorFlow ReLU function 
+To take adavantage of the power of ReLUs, we use the TensorFlow ReLU function 
 
 tf.nn.relu(
     features,
     name=None
 )
 
-The code applies the tf.nn.relu() function to the hidden_layer, effectively turning off any negative weights and acting like an on/off switch. Adding additional layers, like the output layer, after an activation function turns the model into a nonlinear function. This nonlinearity allows the network to solve more complex problems.
+The code applies the tf.nn.relu() function to the hidden_layer:
+
+0. Turning off any negative weights and acting like an on/off switch. 
+
+Adding additional layers, like the output layer, after an activation function turns the model into a nonlinear function. 
+
+This nonlinearity allows the network to solve more complex problems.
 
 # The chain rule 
 
-The math 
+Insert chain rules here
 
 # Backpropagation 
 
 Makes computing derivatives of complex functions very effcient as long as the function is made up of simple blocks with simple derivatives.
 
-Running the model towards the prediction is forward prop
+NOTE: Running the model towards the prediction is called forward propagation. 
+NOTE: The model that goes backward is back propagation.
 
-The model that goes backwards is back prop
+To run SDG for every single batch of data in the training set 
 
-To run SDG for every simngle batch of data in the training set run the forward prop then back prop that will provide the graident for each of the weights in the model. Then apply gradients with learning rate to orignial weights and update them. Repeat many times to optimize model!
+0. Run the forward prop 
+1. Run the back prop 
+NOTE: that will provide the graident for each of the weights in the model. 
+2. Apply obtained gradients with learning rate to orignial weights and update them. 
+3. Repeat many times to optimize model!
 
-Each block of backprop takes twice the memory need for the forward prop and twice to compute important for sizing modeling and fitting it in memory.
+NOTE: Each block of back prop takes twice the memory needed for the forward prop and twice to compute 
+NOTE: This idea is important for sizing models and fitting it them into memory.
 
 # Deep Neural Networks in Tensorflow 
 
-Expanding on the idea of a logistic classifier to build a deep neural network. 
+Finally we will expand on the idea of a logistic classifier to build a deep neural network. 
 
-Please use the multi-layer perceptron folder to follow along. 
+Please use the code in the multi-layer perceptron folder to follow along. 
 
 
-1. You'll use the MNIST dataset provided by TensorFlow, which batches and One-Hot encodes the data for you.
+0. You'll use the MNIST dataset provided by TensorFlow, which batches and One-Hot encodes the data for you.
 
-2. The focus here is on the architecture of multilayer neural networks, not parameter tuning, so here we'll just give you the learning parameters.
+1. The focus here is on the architecture of multilayer neural networks, not parameter tuning, so the learning parameters are provided.
 
-3. The variable n_hidden_layer determines the size of the hidden layer in the neural network. This is also known as the width of a layer.
+2. The variable "n_hidden_layer" determines the size of the hidden layer in the neural network. 
+NOTE: This is also known as the width of a layer.
 
-4. Deep neural networks use multiple layers with each layer requiring it's own weight and bias. 
-- The 'hidden_layer' weight and bias is for the hidden layer. 
-- The 'out' weight and bias is for the output layer. 
+3. Deep neural networks use multiple layers with each layer requiring it's own weight and bias. 
+   - The 'hidden_layer' weight and bias is for the hidden layer. 
+   - The 'out' weight and bias is for the output layer. 
+NOTE: If the neural network were deeper, there would be weights and biases for each additional layer.
 
-If the neural network were deeper, there would be weights and biases for each additional layer.
-
-5. The MNIST data is made up of 28px by 28px images with a single channel. The 
+4. The MNIST data is made up of 28px by 28px images with a single channel. The 
 
 tf.reshape() 
 
 function above reshapes the 28px by 28px matrices in x into row vectors of 784px.
 
-6. Combining linear functions together using a ReLU will give you a two layer network.
+5. Combine linear functions together using a ReLU will give you a two layer network.
 
-7. This is the same optimization technique used in the Intro to TensorFLow lab
+6. This is the same optimization technique used in the Intro to TensorFlow lab
 
-8. The MNIST library in TensorFlow provides the ability to receive the dataset in batches. Calling the mnist.train.next_batch() function returns a subset of the training data
+8. The MNIST library in TensorFlow provides the ability to receive the dataset in batches. 
+NOTE: Calling the "mnist.train.next_batch()" function returns a subset of the training data
 
 
 # Training a Deep Learning Network 
 
 
 # Save and Restore TensorFlow Models 
+
+See Save and Restore folder in this repository for code designed to save and load TensorFlow Models
 
 # Finetuning
 
