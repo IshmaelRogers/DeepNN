@@ -217,8 +217,14 @@ function to implement the dropout
 
 See droput.py
 
+Result of code is 
+
+[[ 9.559999, 16.], [ 0. , 0.], [ 4.72, 28.32])
+
 
 
 
 # Deep Neural Network Lab
 
+
+Refer to Deep NN Lab folder
