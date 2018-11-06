@@ -64,19 +64,42 @@ The first layer  consists of the set of weights and biases applied to X and pass
 
 The second layer consists of the weights and biases applied to these intermediate outputs, followed by the softmax function to generate probabilities
 
-Parameter H the number of RELU units in the classifier ***
+Parameter H, the number of RELU units in the classifier ***
 
 Can be as big as we want. 
 
+## TensorFlow ReLU
 
+We use the TensorFlow ReLU function 
 
+tf.nn.relu(
+    features,
+    name=None
+)
 
+The code applies the tf.nn.relu() function to the hidden_layer, effectively turning off any negative weights and acting like an on/off switch. Adding additional layers, like the output layer, after an activation function turns the model into a nonlinear function. This nonlinearity allows the network to solve more complex problems.
 
 # The chain rule 
 
+The math 
+
 # Backpropagation 
 
+Makes computing derivatives of complex functions very effcient as long as the function is made up of simple blocks with simple derivatives.
+
+Running the model towards the prediction is forward prop
+
+The model that goes backwards is back prop
+
+To run SDG for every simngle batch of data in the training set run the forward prop then back prop that will provide the graident for each of the weights in the model. Then apply gradients with learning rate to orignial weights and update them. Repeat many times to optimize model!
+
+Each block of backprop takes twice the memory need for the forward prop and twice to compute important for sizing modeling and fitting it in memory.
+
 # Deep Neural Networks in Tensorflow 
+
+Expanding on the idea of a logistic classifier to build a deep neural network.
+
+
 
 # Training a Deep Learning Network 
 
