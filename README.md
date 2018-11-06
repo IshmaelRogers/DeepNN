@@ -130,15 +130,95 @@ function above reshapes the 28px by 28px matrices in x into row vectors of 784px
 # Training a Deep Learning Network 
 
 
-
-
 # Save and Restore TensorFlow Models 
 
 # Finetuning
 
 # Regularization 
 
+The network at just the right size for our data is hard to optimize. 
+
+In practice we train networks that are way too big for our data then prevent them from overfitting
+
+# Early termination 
+
+Look at performance of validation set. 
+
+Stop and train as soon as we stop inmproving 
+
+Prevents over optimization
+
+## Regularizing 
+
+- applying artificial constraints on the network that implicitly reduce the number of free parameters.
+
+# L2 Regularization
+
+Adds another term to the loss which penalizes large weights.
+
+Add L2 Norm of the weights to the loss and multiply by a small constant
+
+NOTE: L2 norm stands for the sum of the squares of the individual elements in a vector 
+ 
+ Structure of network doesnt change because the L2 Norm is being added
+ 
+ Derivative is X
+ 
+
+Question
+
+
 # Dropout 
+
+Dropout is a regularization technique for reducing overfitting. The technique temporarily drops units (artificial neurons) from the network, along with all of those units' incoming and outgoing connections
+
+imagine 1 layer connected to another layer the values that go from 1 layer to the next are activations. Take the activations and randomly, for every example you train the network on, set half of them to zero. 
+
+Completely and randomly and take half the data and destroy it 
+
+Network can never rely on any given activation to be present because it may be destroyed
+
+Forced to learn a redundant representation for everything, to make sure some of the info remains
+
+Prevents overfitting
+
+Takes a concensus 
+
+Evaluating the network trained with dropout no longer want randomness
+
+something determoinistic is desired 
+
+Take concensuses over the 
+
+average the activation 
+
+y e = average of all yt obtained during training 
+
+during =training
+
+0 out activation that i drop out 
+scale remaining activations by factor of 2 
+
+to remove these dropouts and scaling operations from the nueral network
+
+The result is an average of these activations that is properly scaled
+
+
+TensorFlow provides the 
+tf.nn.dropout(
+    x,
+    keep_prob,
+    noise_shape=None,
+    seed=None,
+    name=None
+)
+
+function to implement the dropout
+
+See droput.py
+
+
+
 
 # Deep Neural Network Lab
 
