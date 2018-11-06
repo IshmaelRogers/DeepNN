@@ -97,11 +97,40 @@ Each block of backprop takes twice the memory need for the forward prop and twic
 
 # Deep Neural Networks in Tensorflow 
 
-Expanding on the idea of a logistic classifier to build a deep neural network.
+Expanding on the idea of a logistic classifier to build a deep neural network. 
 
+Please use the multi-layer perceptron folder to follow along. 
+
+
+1. You'll use the MNIST dataset provided by TensorFlow, which batches and One-Hot encodes the data for you.
+
+2. The focus here is on the architecture of multilayer neural networks, not parameter tuning, so here we'll just give you the learning parameters.
+
+3. The variable n_hidden_layer determines the size of the hidden layer in the neural network. This is also known as the width of a layer.
+
+4. Deep neural networks use multiple layers with each layer requiring it's own weight and bias. 
+- The 'hidden_layer' weight and bias is for the hidden layer. 
+- The 'out' weight and bias is for the output layer. 
+
+If the neural network were deeper, there would be weights and biases for each additional layer.
+
+5. The MNIST data is made up of 28px by 28px images with a single channel. The 
+
+tf.reshape() 
+
+function above reshapes the 28px by 28px matrices in x into row vectors of 784px.
+
+6. Combining linear functions together using a ReLU will give you a two layer network.
+
+7. This is the same optimization technique used in the Intro to TensorFLow lab
+
+8. The MNIST library in TensorFlow provides the ability to receive the dataset in batches. Calling the mnist.train.next_batch() function returns a subset of the training data
 
 
 # Training a Deep Learning Network 
+
+
+
 
 # Save and Restore TensorFlow Models 
 
